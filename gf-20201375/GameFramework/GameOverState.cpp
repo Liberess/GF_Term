@@ -1,4 +1,5 @@
 #include "GameOverState.h"
+#include "TextManager.h"
 
 const std::string GameOverState::s_gameOverID = "GAME OVER";
 GameOverState* GameOverState::s_pInstance = nullptr;
@@ -17,11 +18,6 @@ void GameOverState::s_restartPlay()
 
 bool GameOverState::onEnter()
 {
-	if (!TheTextureManager::Instance()->load("Assets/UI/gameover.png",
-		"gameovertext", TheGame::Instance()->getRenderer()))
-	{
-		return false;
-	}
 	if (!TheTextureManager::Instance()->load("Assets/UI/main.png",
 		"mainButton", TheGame::Instance()->getRenderer()))
 	{
@@ -33,16 +29,11 @@ bool GameOverState::onEnter()
 		return false;
 	}
 
-	GameObject* gameOverText = new AnimatedGraphic(
-		new LoaderParams(200, 100, 190, 30, "gameovertext"), 2);
-
-	GameObject* button1 = new MenuButton(new LoaderParams(200, 200,
+	GameObject* button1 = new MenuButton(new LoaderParams(260, 180,
 		200, 80, "mainButton"), s_gameOverToMain);
-
-	GameObject* button2 = new MenuButton(new LoaderParams(200, 300, 200,
+	GameObject* button2 = new MenuButton(new LoaderParams(260, 280, 200,
 		80, "restart"), s_restartPlay);
 
-	m_gameObjects.push_back(gameOverText);
 	m_gameObjects.push_back(button1);
 	m_gameObjects.push_back(button2);
 
@@ -60,6 +51,10 @@ void GameOverState::render()
 {
 	for (int i = 0; i < m_gameObjects.size(); ++i)
 		m_gameObjects[i]->draw();
+
+	SDL_Color color = { 255, 0, 0 };
+	TheTextManager::Instance()->drawText(
+		"GameOver", 235, 50, 50, color, TheGame::Instance()->getRenderer());
 }
 
 bool GameOverState::onExit()
@@ -70,12 +65,12 @@ bool GameOverState::onExit()
 	m_gameObjects.clear();
 
 	TheTextureManager::Instance()
-		->clearFromTextureMap("gameovertext");
-	TheTextureManager::Instance()
 		->clearFromTextureMap("mainButton");
 	TheTextureManager::Instance()
 		->clearFromTextureMap("restart");
 	std::cout << "Exiting PauseState" << std::endl;
+
+	TheGame::Instance()->m_time = 0.0f;
 
 	return true;
 }

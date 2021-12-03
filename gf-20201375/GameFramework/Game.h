@@ -13,6 +13,8 @@ class GameStateMachine;
 class Game
 {
 public:
+	int m_score;
+	float m_time;
 	static Game* Instance()
 	{
 		if (s_pInstance == nullptr)

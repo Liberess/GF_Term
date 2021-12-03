@@ -7,14 +7,15 @@
 const std::string PauseState::s_pauseID = "PAUSE";
 PauseState *PauseState::s_pInstance = nullptr;
 
-void PauseState::s_pauseToMain()
+void PauseState::s_pauseToMain() // 메인 화면으로
 {
 	TheGame::Instance()->getStateMachine()->changeState(
 		MenuState::Instance());
 }
 
-void PauseState::s_resumePlay()
+void PauseState::s_resumePlay() // 다시 플레이
 {
+	TheGame::Instance()->m_time = 0.0f;
 	TheGame::Instance()->getStateMachine()->popState();
 }
 
@@ -30,7 +31,7 @@ void PauseState::render()
 		m_gameObjects[i]->draw();
 }
 
-bool PauseState::onEnter()
+bool PauseState::onEnter() // 일시정지 상태
 {
 	if (!TheTextureManager::Instance()->load("Assets/UI/resume.png",
 		"resumebutton", TheGame::Instance()->getRenderer()))
@@ -43,16 +44,16 @@ bool PauseState::onEnter()
 		return false;
 	}
 	GameObject* button1 = new MenuButton(new
-		LoaderParams(260, 100, 200, 80, "mainbutton"), s_pauseToMain);
+		LoaderParams(260, 150, 200, 80, "mainbutton"), s_pauseToMain);
 	GameObject* button2 = new MenuButton(new
-		LoaderParams(260, 300, 200, 80, "resumebutton"), s_resumePlay);
+		LoaderParams(260, 250, 200, 80, "resumebutton"), s_resumePlay);
 	m_gameObjects.push_back(button1);
 	m_gameObjects.push_back(button2);
 	std::cout << "entering PauseState" << std::endl;
 	return true;
 }
 
-bool PauseState::onExit()
+bool PauseState::onExit() // 일시정지 상태 해제
 {
 	for (int i = 0; i < m_gameObjects.size(); i++)
 		m_gameObjects[i]->clean();

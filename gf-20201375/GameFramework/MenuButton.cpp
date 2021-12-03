@@ -1,4 +1,3 @@
-#pragma once
 #include "MenuButton.h"
 
 MenuButton::MenuButton(const LoaderParams* pParams, void(*callback)())
