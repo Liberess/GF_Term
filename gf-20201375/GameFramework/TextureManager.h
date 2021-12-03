@@ -6,18 +6,16 @@
 
 class TextureManager
 {
-private:
-	std::map<std::string, SDL_Texture*> m_textureMap;
-	TextureManager() {}
 public:
 	static TextureManager *s_pInstance;
-	static TextureManager* Instance() {
-		if (s_pInstance == nullptr) {
+	static TextureManager* Instance()
+	{
+		if (s_pInstance == nullptr) 
 			s_pInstance = new TextureManager();
-			return s_pInstance;
-		}
+
 		return s_pInstance;
 	}
+
 public:
 	bool load(std::string fileName, std::string id, SDL_Renderer *pRenderer);
 	void draw(std::string id, int x, int y, int width, int height,
@@ -29,6 +27,10 @@ public:
 	{
 		m_textureMap.erase(id);
 	}
+
+private:
+	std::map<std::string, SDL_Texture*> m_textureMap;
+	TextureManager() {}
 };
 
 typedef TextureManager TheTextureManager;

@@ -12,26 +12,25 @@ MenuState* MenuState::s_pInstance = nullptr;
 void MenuState::update()
 {
 	for (int i = 0; i < m_gameObjects.size(); ++i)
-	{
 		m_gameObjects[i]->update();
-	}
 }
 
 void MenuState::render()
 {
 	for (int i = 0; i < m_gameObjects.size(); ++i)
-	{
 		m_gameObjects[i] -> draw();
-	}
 }
 
 bool MenuState::onEnter()
 {
 	std::cout << "entering MenuState" << std::endl;
+
 	if (!TheTextureManager::Instance()->load("Assets/UI/button.png",
-		"PlayButton", TheGame::Instance()->getRenderer())) {
+		"PlayButton", TheGame::Instance()->getRenderer()))
+	{
 		return false;
 	}
+
 	if (!TheTextureManager::Instance()->load("Assets/UI/exit.png",
 		"ExitButton", TheGame::Instance()->getRenderer()))
 	{

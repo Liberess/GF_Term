@@ -21,27 +21,25 @@ void PauseState::s_resumePlay()
 void PauseState::update()
 {
 	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
 		m_gameObjects[i]->update();
-	}
 }
 
 void PauseState::render()
 {
 	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
 		m_gameObjects[i]->draw();
-	}
 }
 
 bool PauseState::onEnter()
 {
 	if (!TheTextureManager::Instance()->load("Assets/UI/resume.png",
-		"resumebutton", TheGame::Instance()->getRenderer())) {
+		"resumebutton", TheGame::Instance()->getRenderer()))
+	{
 		return false;
 	}
 	if (!TheTextureManager::Instance()->load("Assets/UI/main.png",
-		"mainbutton", TheGame::Instance()->getRenderer())) {
+		"mainbutton", TheGame::Instance()->getRenderer()))
+	{
 		return false;
 	}
 	GameObject* button1 = new MenuButton(new
@@ -57,14 +55,16 @@ bool PauseState::onEnter()
 bool PauseState::onExit()
 {
 	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
 		m_gameObjects[i]->clean();
-	}
+
 	m_gameObjects.clear();
+
 	TheTextureManager::Instance()
 		->clearFromTextureMap("resumebutton");
+
 	TheTextureManager::Instance()
 		->clearFromTextureMap("mainbutton");
+
 	std::cout << "exiting PauseState" << std::endl;
 	return true;
 }

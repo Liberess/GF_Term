@@ -15,10 +15,8 @@ public:
 	static Game* Instance()
 	{
 		if (s_pInstance == nullptr)
-		{
 			s_pInstance = new Game();
-			return s_pInstance;
-		}
+
 		return s_pInstance;
 	}
 	SDL_Renderer* getRenderer() const { return m_pRenderer; }
@@ -34,22 +32,21 @@ public:
 		return m_pGameStateMachine;
 	}
 	std::vector<GameObject*> m_gameObjects;
+
 private:
-	Game() {}
+	Game() : m_currentFrame(0), m_pWindow(nullptr), m_pRenderer(nullptr),
+		m_bRunning(false), m_pTexture(nullptr), m_srcRect(), m_destRect(),
+		m_pGameStateMachine(nullptr) {}
 	static Game* s_pInstance;
 
 private:
 	int m_currentFrame;
-
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
-
 	bool m_bRunning;
-
 	SDL_Texture* m_pTexture;
-	SDL_Rect m_sourceRectangle;
-	SDL_Rect m_destinationRectangle;
-
+	SDL_Rect m_srcRect;
+	SDL_Rect m_destRect;
 	GameStateMachine* m_pGameStateMachine;
 };
 

@@ -17,17 +17,16 @@ public:
 	virtual bool onEnter();
 	virtual bool onExit();
 	virtual std::string getStateID() const {return s_gameOverID;}
-	static GameOverState* Instance() {
+	static GameOverState* Instance()
+	{
 		if (s_pInstance == nullptr)
-		{
 			s_pInstance = new GameOverState();
-		}
+
 		return s_pInstance;
 	}
 
 private:
 	GameOverState() {}
-
 	static GameOverState* s_pInstance;
 	static void s_gameOverToMain();
 	static void s_restartPlay();

@@ -23,7 +23,6 @@ public:
 
 private:
 	PlayState(){}
-
 	static PlayState* s_pInstance;
 	static const std::string s_playID;
 };

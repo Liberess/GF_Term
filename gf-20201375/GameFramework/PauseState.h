@@ -10,12 +10,11 @@ public:
 	virtual bool onEnter();
 	virtual bool onExit();
 	virtual std::string getStateID() const { return s_pauseID; }
-
 	static PauseState* Instance()
 	{
-		if (s_pInstance == nullptr) {
+		if (s_pInstance == nullptr)
 			s_pInstance = new PauseState();
-		}
+		
 		return s_pInstance;
 	}
 

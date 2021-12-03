@@ -53,25 +53,20 @@ bool GameOverState::onEnter()
 void GameOverState::update()
 {
 	for (int i = 0; i < m_gameObjects.size(); ++i)
-	{
 		m_gameObjects[i]->update();
-	}
 }
 
 void GameOverState::render()
 {
 	for (int i = 0; i < m_gameObjects.size(); ++i)
-	{
 		m_gameObjects[i]->draw();
-	}
 }
 
 bool GameOverState::onExit()
 {
 	for (int i = 0; i < m_gameObjects.size(); ++i)
-	{
 		m_gameObjects[i]->clean();
-	}
+
 	m_gameObjects.clear();
 
 	TheTextureManager::Instance()

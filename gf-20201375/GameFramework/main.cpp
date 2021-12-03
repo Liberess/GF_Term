@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 
 	Uint32 frameStart, frameTime;
 
-	if (TheGame::Instance()->init("Chapter 1",
+	if (TheGame::Instance()->init("Avoiding poop",
 		100, 100, 640, 480, false))
 	{
 		while (TheGame::Instance()->running())
@@ -18,9 +18,7 @@ int main(int argc, char* argv[])
 			TheGame::Instance()->render();
 			frameTime = SDL_GetTicks() - frameStart;
 			if (frameTime < DELAY_TIME)
-			{
 				SDL_Delay((int)(DELAY_TIME - frameTime));
-			}
 		}
 	}
 	else

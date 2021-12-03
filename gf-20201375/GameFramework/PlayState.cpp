@@ -13,9 +13,7 @@ PlayState *PlayState::s_pInstance  = nullptr;
 void PlayState::update()
 {
 	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
 		m_gameObjects[i]->update();
-	}
 
 	if (checkCollision(
 		dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
@@ -35,25 +33,26 @@ void PlayState::update()
 void PlayState::render()
 {
 	for (int i = 0; i < m_gameObjects.size(); ++i)
-	{
 		m_gameObjects[i]->draw();
-	}
 }
 
 bool PlayState::onEnter()
 {
 	std::cout << "entering PlayState" << std::endl;
+
 	if (!TheTextureManager::Instance()->load("Assets/Player/helicopter.png", 
 	"helicopter", TheGame::Instance()->getRenderer()))
 	{
 		return false;
 	}
+
 	if (!TheTextureManager::Instance()->load(
 		"Assets/Player/helicopter2.png", "helicopter2",
 		TheGame::Instance()->getRenderer()))
 	{
 		return false;
 	}
+
 	GameObject* player = new Player(
 		new LoaderParams(100, 100, 128, 55, "helicopter"));
 	m_gameObjects.push_back(player);

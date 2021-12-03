@@ -10,13 +10,13 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-
 	void (*m_callback)();
 	bool m_bReleased;
 };
 
-enum button_state {
+enum button_state
+{
 	MOUSE_OUT = 0,
-	MOUSE_OVER = 1,
-	CLICKED = 2,
+	MOUSE_OVER,
+	CLICKED,
 };

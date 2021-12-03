@@ -15,9 +15,9 @@ class InputHandler
 public:
 	static InputHandler* Instance()
 	{
-		if(s_pInstance == nullptr){
+		if(s_pInstance == nullptr)
 			s_pInstance = new InputHandler();
-			}
+			
 		return s_pInstance;
 	}
 	bool isKeyDown(SDL_Scancode key);
@@ -35,6 +35,7 @@ public:
 	void onMouseButtonUp(SDL_Event event);
 	void onKeyDown();
 	void onKeyUp();
+
 private:
 	InputHandler();
 	static InputHandler *s_pInstance;

@@ -10,7 +10,8 @@ Player::Player(const LoaderParams* pParams) :
 
 void Player::draw()
 {
-	if (m_velocity.getX() > 0) {
+	if (m_velocity.getX() > 0) // ¿À¸¥ÂÊ
+	{
 		TextureManager::Instance()->drawFrame(m_textureID,
 			(Uint32)m_position.getX(),
 			(Uint32)m_position.getY(),
@@ -19,7 +20,8 @@ void Player::draw()
 			TheGame::Instance()->getRenderer(),
 			SDL_FLIP_HORIZONTAL);
 	}
-	else {
+	else // ¿ÞÂÊ
+	{
 		TextureManager::Instance()->drawFrame(m_textureID,
 			(Uint32)m_position.getX(),
 			(Uint32)m_position.getY(),
@@ -27,6 +29,7 @@ void Player::draw()
 			m_currentRow, m_currentFrame,
 			TheGame::Instance()->getRenderer());
 	}
+
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 5));
 }
 
@@ -34,9 +37,9 @@ void Player::update()
 {
 	m_velocity.setX(0);
 	m_velocity.setY(0);
+
 	handleInput();
 
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 4));
 	SDLGameObject::update();
 }
 
@@ -53,7 +56,8 @@ void Player::handleInput()
 	m_velocity /= 50;
 
 	if (TheInputHandler::Instance()
-		->isKeyDown(SDL_SCANCODE_SPACE) == 1) {
+		->isKeyDown(SDL_SCANCODE_SPACE) == 1)
+	{
 		TheGame::Instance()->m_gameObjects.push_back(
 			new Enemy(
 				new LoaderParams(
