@@ -18,45 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Sources\Game.cpp" />
-    <ClCompile Include="Sources\GameObjects\Background.cpp" />
-    <ClCompile Include="Sources\GameObjects\Bullet.cpp" />
-    <ClCompile Include="Sources\GameObjects\Enemy.cpp" />
-    <ClCompile Include="Sources\GameObjects\Ground.cpp" />
-    <ClCompile Include="Sources\GameObjects\Player.cpp" />
-    <ClCompile Include="Sources\GameObjects\SDLGameObject.cpp" />
-    <ClCompile Include="Sources\main.cpp" />
-    <ClCompile Include="Sources\TextManager.cpp" />
-    <ClCompile Include="Sources\TextureManager.cpp" />
-    <ClCompile Include="Sources\Utilities\InputHandler.cpp" />
-    <ClCompile Include="Sources\Utilities\Timer.cpp" />
-    <ClCompile Include="Sources\Utilities\Vector2D.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Sources\Game.h" />
-    <ClInclude Include="Sources\GameObjects\Background.h" />
-    <ClInclude Include="Sources\GameObjects\Bullet.h" />
-    <ClInclude Include="Sources\GameObjects\Enemy.h" />
-    <ClInclude Include="Sources\GameObjects\GameObject.h" />
-    <ClInclude Include="Sources\GameObjects\Ground.h" />
-    <ClInclude Include="Sources\GameObjects\LoaderParams.h" />
-    <ClInclude Include="Sources\GameObjects\Player.h" />
-    <ClInclude Include="Sources\GameObjects\SDLGameObject.h" />
-    <ClInclude Include="Sources\TextManager.h" />
-    <ClInclude Include="Sources\TextureManager.h" />
-    <ClInclude Include="Sources\Utilities\InputHandler.h" />
-    <ClInclude Include="Sources\Utilities\Timer.h" />
-    <ClInclude Include="Sources\Utilities\Vector2D.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\Users\Gyeong\Downloads\background.png" />
-    <Image Include="..\..\..\Users\Gyeong\Downloads\bullet.png" />
-    <Image Include="..\..\..\Users\Gyeong\Downloads\ground1.png" />
-    <Image Include="..\..\..\Users\Gyeong\Downloads\Ninja_Frog-export.png" />
-    <Image Include="..\..\..\Users\Gyeong\Downloads\Radish-export.png" />
-    <Image Include="..\..\..\Users\Gyeong\Downloads\wall.png" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -180,6 +141,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
