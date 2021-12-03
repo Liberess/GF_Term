@@ -152,6 +152,7 @@
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SDLGameObject.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PauseState.h" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="SDLGameObject.h" />

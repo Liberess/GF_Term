@@ -1,36 +1,19 @@
 #include "Player.h"
 #include "Game.h"
 #include "TextureManager.h"
+#include "PlayState.h"
 
 Player::Player(const LoaderParams* pParams) :
 	SDLGameObject(pParams)
 {
-
+	m_flipX = SDL_FLIP_NONE;
 }
 
 void Player::draw()
 {
-	if (m_velocity.getX() > 0) // 오른쪽
-	{
-		TextureManager::Instance()->drawFrame(m_textureID,
-			(Uint32)m_position.getX(),
-			(Uint32)m_position.getY(),
-			m_width, m_height,
-			m_currentRow, m_currentFrame,
-			TheGame::Instance()->getRenderer(),
-			SDL_FLIP_HORIZONTAL);
-	}
-	else // 왼쪽
-	{
-		TextureManager::Instance()->drawFrame(m_textureID,
-			(Uint32)m_position.getX(),
-			(Uint32)m_position.getY(),
-			m_width, m_height,
-			m_currentRow, m_currentFrame,
-			TheGame::Instance()->getRenderer());
-	}
+	SDLGameObject::draw();
 
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 5));
+	m_currentFrame = int(((SDL_GetTicks() / 100) % 11));
 }
 
 void Player::update()
@@ -38,7 +21,7 @@ void Player::update()
 	m_velocity.setX(0);
 	m_velocity.setY(0);
 
-	handleInput();
+	handleInput(); // 이동 입력
 
 	SDLGameObject::update();
 }
@@ -50,20 +33,37 @@ void Player::clean()
 
 void Player::handleInput()
 {
-	Vector2D* target = TheInputHandler::Instance()
-		->getMousePosition();
-	m_velocity = *target - m_position;
-	m_velocity /= 50;
-
-	if (TheInputHandler::Instance()
-		->isKeyDown(SDL_SCANCODE_SPACE) == 1)
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
-		TheGame::Instance()->m_gameObjects.push_back(
-			new Enemy(
-				new LoaderParams(
-					m_position.getX(), m_position.getY(),
-					128, 82, "animate")
-			)
-		);
+		if (m_position.getX() + m_width < TheGame::Instance()->getScreenWidth())
+		{
+			m_velocity.setX(5);
+			m_flipX = SDL_FLIP_NONE;
+		}
+		else
+		{
+			m_velocity.setX(0);
+		}
+
+		m_currentRow = 2; //Run
+	}
+	else if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
+	{
+		if (m_position.getX() > 0)
+		{
+			m_velocity.setX(-5);
+			m_flipX = SDL_FLIP_HORIZONTAL;
+		}
+		else
+		{
+			m_velocity.setX(0);
+		}
+
+		m_currentRow = 2; //Run
+	}
+	else
+	{
+		m_currentRow = 1; //Idle
+		m_velocity.setX(0);
 	}
 }

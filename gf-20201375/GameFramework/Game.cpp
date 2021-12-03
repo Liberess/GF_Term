@@ -17,17 +17,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width,
 		if (m_pWindow != 0)
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 
+		m_screenWidth = width;
+		m_screenHeight = height;
+
 		SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
 	}
 	else
 	{
 		return false;		// sdl could not initialize
-	}
-
-	if (!TheTextureManager::Instance()->load("Assets/Player/KinoStanding.png",
-		"PlayerStanding", m_pRenderer))
-	{
-		return false;
 	}
 
 	// 게임 유한상태기계

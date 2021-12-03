@@ -16,12 +16,13 @@ void PlayState::update()
 		m_gameObjects[i]->update();
 
 	if (checkCollision(
-		dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
-		dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
+		dynamic_cast<SDLGameObject*>(m_gameObjects[1]),
+		dynamic_cast<SDLGameObject*>(m_gameObjects[2])))
 	{
 		TheGame::Instance()->getStateMachine()
 			->changeState(GameOverState::Instance());
 	}
+
 	if (TheInputHandler::Instance()->isKeyDown(
 		SDL_SCANCODE_ESCAPE))
 	{
@@ -40,26 +41,36 @@ bool PlayState::onEnter()
 {
 	std::cout << "entering PlayState" << std::endl;
 
-	if (!TheTextureManager::Instance()->load("Assets/Player/helicopter.png", 
-	"helicopter", TheGame::Instance()->getRenderer()))
+	if (!TheTextureManager::Instance()->load("Assets/platform.png",
+		"platform", TheGame::Instance()->getRenderer()))
+	{
+		return false;
+	}
+
+	if (!TheTextureManager::Instance()->load("Assets/Ninja_Frog-export.png", 
+	"player", TheGame::Instance()->getRenderer()))
 	{
 		return false;
 	}
 
 	if (!TheTextureManager::Instance()->load(
-		"Assets/Player/helicopter2.png", "helicopter2",
+		"Assets/poop-export.png", "poop",
 		TheGame::Instance()->getRenderer()))
 	{
 		return false;
 	}
 
+	GameObject* platform = new Platform(
+		new LoaderParams(0, 432, 720, 48, "platform"));
+	m_gameObjects.push_back(platform);
+
 	GameObject* player = new Player(
-		new LoaderParams(100, 100, 128, 55, "helicopter"));
+		new LoaderParams(328, 368, 64, 64, "player"));
 	m_gameObjects.push_back(player);
 
-	GameObject* enemy = new Enemy(
-		new LoaderParams(300, 300, 128, 55, "helicopter2"));
-	m_gameObjects.push_back(enemy);
+	GameObject* poop1 = new Enemy(
+		new LoaderParams(500, 300, 32, 32, "poop"));
+	m_gameObjects.push_back(poop1);
 
 	return true;
 }
@@ -72,7 +83,7 @@ bool PlayState::onExit()
 		m_gameObjects[i]->clean();
 
 	m_gameObjects.clear();
-	TheTextureManager::Instance()->clearFromTextureMap("helicopter");
+	TheTextureManager::Instance()->clearFromTextureMap("player");
 	return true;
 }
 

@@ -30,4 +30,5 @@ protected:
 	int m_currentFrame;
 	int m_numFrames;
 	std::string m_textureID;
+	SDL_RendererFlip m_flipX;
 };
