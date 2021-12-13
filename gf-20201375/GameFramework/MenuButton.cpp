@@ -1,4 +1,5 @@
 #include "MenuButton.h"
+#include "AudioManager.h"
 
 MenuButton::MenuButton(const LoaderParams* pParams, void(*callback)())
 	: SDLGameObject(pParams), m_callback(callback)
@@ -18,7 +19,6 @@ void MenuButton::clean()
 
 void MenuButton::update()
 {
-	// pMousePos = 마우스 포인터의 좌표값을 갖고 온다.
 	Vector2D* pMousePos =
 				TheInputHandler::Instance()->getMousePosition();
 
@@ -35,6 +35,10 @@ void MenuButton::update()
 			m_currentFrame = CLICKED;
 			m_callback();
 			m_bReleased = false;
+#ifdef WIN32
+			TheAudioManager::Instance()->PlaySFX(SfxType::BtnClick);
+#endif
+			SDL_Delay(200);
 		}
 		else if (!TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{

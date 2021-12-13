@@ -18,12 +18,9 @@ protected:
 	virtual ~GameObject() {}
 
 protected:
-	int m_x;
-	int m_y;
-	int m_width;
-	int m_height;
-	int m_currentRow;
-	int m_currentFrame;
+	int m_x, m_y;
+	int m_width, m_height;
+	int m_currentRow, m_currentFrame;
 	std::string m_textureID;
 	SDL_RendererFlip m_flipX;
 };

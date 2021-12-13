@@ -5,7 +5,6 @@
 #include "MenuButton.h"
 #include "PlayState.h"
 #include "Game.h"
-#include "AnimatedGraphic.h"
 #include "GameStateMachine.h"
 #include "GameObject.h"
 
@@ -28,7 +27,7 @@ public:
 private:
 	GameOverState() {}
 	static GameOverState* s_pInstance;
+	static const std::string s_gameOverID;
 	static void s_gameOverToMain();
 	static void s_restartPlay();
-	static const std::string s_gameOverID;
 };

@@ -11,6 +11,6 @@ public:
 	void render();
 
 private:
-	GameState* m_currentState;
 	GameState* m_prevState;
+	GameState* m_currentState;
 };

@@ -16,11 +16,11 @@ public:
 		
 		return s_pInstance;
 	}
-	static void s_menuToPlay();
-	static void s_exitFromMenu();
 
 private:
-	MenuState() {}
 	static MenuState *s_pInstance;
 	static const std::string s_menuID;
+	MenuState() {}
+	static void s_menuToPlay();
+	static void s_exitFromMenu();
 };

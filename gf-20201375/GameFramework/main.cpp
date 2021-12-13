@@ -7,8 +7,8 @@ int main(int argc, char* argv[])
 
 	Uint32 frameStart, frameTime;
 
-	if (TheGame::Instance()->init("Avoiding poop",
-		100, 100, 720, 480, false))
+	if (TheGame::Instance()->init("Avoid Poop",
+		600, 300, 720, 480, false))
 	{
 		while (TheGame::Instance()->running())
 		{

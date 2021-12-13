@@ -18,4 +18,5 @@ private:
 	float m_waitTime;
 	float m_time;
 	int m_fallSpeed;
+	int m_sfxCount;
 };

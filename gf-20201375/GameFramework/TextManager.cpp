@@ -3,12 +3,13 @@
 
 TextManager* TextManager::s_pInstance = 0;
 
-void TextManager::drawText(const char* str, int x, int y, int size, SDL_Color color, SDL_Renderer* pRenderer)
+void TextManager::drawText(const char* str, int x, int y, int size,
+	SDL_Color color, SDL_Renderer* pRenderer)
 {
 	clean();
 	TTF_Init();
 
-	TTF_Font* font = TTF_OpenFont("Assets/CookieRun Regular.ttf", size);
+	TTF_Font* font = TTF_OpenFont("Assets/Jung9.ttf", size);
 
 	m_surface = TTF_RenderText_Solid(font, str, color);
 	m_texture = SDL_CreateTextureFromSurface(pRenderer, m_surface);

@@ -14,7 +14,8 @@ public:
 	}
 	~TextManager() {}
 	void clean();
-	void drawText(const char* str, int x, int y, int size, SDL_Color color, SDL_Renderer* pRenderer);
+	void drawText(const char* str, int x, int y, int size,
+		SDL_Color color, SDL_Renderer* pRenderer);
 
 private:
 	TextManager() {}

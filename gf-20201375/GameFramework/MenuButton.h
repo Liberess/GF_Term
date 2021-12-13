@@ -3,6 +3,13 @@
 
 class LoaderParams;
 
+enum button_state
+{
+	MOUSE_OUT = 0,
+	MOUSE_OVER,
+	CLICKED,
+};
+
 class MenuButton : public SDLGameObject
 {
 public:
@@ -12,11 +19,4 @@ public:
 	virtual void clean();
 	void (*m_callback)();
 	bool m_bReleased;
-};
-
-enum button_state
-{
-	MOUSE_OUT = 0,
-	MOUSE_OVER,
-	CLICKED,
 };

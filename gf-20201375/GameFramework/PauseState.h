@@ -2,6 +2,7 @@
 #include "GameState.h"
 
 class GameObject;
+
 class PauseState: public GameState
 {
 public:
@@ -19,9 +20,9 @@ public:
 	}
 
 private:
-	PauseState() {}
 	static PauseState *s_pInstance;
+	static const std::string s_pauseID;
+	PauseState() {}
 	static void s_pauseToMain();
 	static void s_resumePlay();
-	static const std::string s_pauseID;
 };

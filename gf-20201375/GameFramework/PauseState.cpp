@@ -3,6 +3,7 @@
 #include "GameStateMachine.h"
 #include "MenuState.h"
 #include "MenuButton.h"
+#include "AudioManager.h"
 
 const std::string PauseState::s_pauseID = "PAUSE";
 PauseState *PauseState::s_pInstance = nullptr;
@@ -33,6 +34,10 @@ void PauseState::render()
 
 bool PauseState::onEnter() // 일시정지 상태
 {
+#ifdef WIN32
+	TheAudioManager::Instance()->PauseBGM();
+#endif // WIN32
+
 	if (!TheTextureManager::Instance()->load("Assets/UI/resume.png",
 		"resumebutton", TheGame::Instance()->getRenderer()))
 	{
@@ -55,6 +60,10 @@ bool PauseState::onEnter() // 일시정지 상태
 
 bool PauseState::onExit() // 일시정지 상태 해제
 {
+#ifdef WIN32
+	TheAudioManager::Instance()->ResumeBGM();
+#endif // WIN32
+
 	for (int i = 0; i < m_gameObjects.size(); i++)
 		m_gameObjects[i]->clean();
 

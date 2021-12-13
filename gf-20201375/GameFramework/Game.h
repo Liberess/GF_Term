@@ -6,6 +6,7 @@
 #include <vector>
 #include "Player.h"
 #include "Enemy.h"
+#include "Cloud.h"
 #include "Platform.h"
 
 class GameStateMachine;
@@ -30,10 +31,7 @@ public:
 	void clean();
 	bool running() { return m_bRunning; }
 	void quit();
-	GameStateMachine* getStateMachine()
-	{
-		return m_pGameStateMachine;
-	}
+	GameStateMachine* getStateMachine() { return m_pGameStateMachine; }
 	int getScreenWidth() const { return m_screenWidth; }
 	int getScreenHeight() const { return m_screenHeight; }
 	std::vector<GameObject*> m_gameObjects;
@@ -41,7 +39,8 @@ public:
 private:
 	Game() : m_currentFrame(0), m_pWindow(nullptr), m_pRenderer(nullptr),
 		m_bRunning(false), m_pTexture(nullptr), m_srcRect(), m_destRect(),
-		m_pGameStateMachine(nullptr), m_screenWidth(0), m_screenHeight(0) {}
+		m_pGameStateMachine(nullptr), m_screenWidth(0), m_screenHeight(0),
+		m_score(0), m_time(0) {}
 	static Game* s_pInstance;
 
 private:

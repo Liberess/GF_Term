@@ -1,5 +1,6 @@
 #include "GameOverState.h"
 #include "TextManager.h"
+#include "AudioManager.h"
 
 const std::string GameOverState::s_gameOverID = "GAME OVER";
 GameOverState* GameOverState::s_pInstance = nullptr;
@@ -18,6 +19,11 @@ void GameOverState::s_restartPlay()
 
 bool GameOverState::onEnter()
 {
+#ifdef WIN32
+	TheAudioManager::Instance()->StopBGM();
+	TheAudioManager::Instance()->StopAllSFX();
+#endif // WIN32
+
 	if (!TheTextureManager::Instance()->load("Assets/UI/main.png",
 		"mainButton", TheGame::Instance()->getRenderer()))
 	{
@@ -54,7 +60,7 @@ void GameOverState::render()
 
 	SDL_Color color = { 255, 0, 0 };
 	TheTextManager::Instance()->drawText(
-		"GameOver", 235, 50, 50, color, TheGame::Instance()->getRenderer());
+		"Game Over", 182, 55, 80, color, TheGame::Instance()->getRenderer());
 }
 
 bool GameOverState::onExit()
