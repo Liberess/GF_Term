@@ -3,7 +3,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <SDL.h>
+
+#ifdef WIN32
 #include <SDL_mixer.h>
+#endif
 
 enum SfxType
 {
